@@ -8,13 +8,13 @@ from typing import Dict, List
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-analyse_request_prompt = "I need to pick a playlist of songs. Here are my requirements: {text}.\nTake a deep breath and analyze my request, think about what genres, artists, bands which can be appropriate. Don't give a direct list of songs. Instead, write your thoughts and detailed analysis of my request (2-3 sentences). Come up with something non-ordinary and not well-known"
+analyse_request_prompt = "I need to pick a playlist of songs. Here are my requirements: {text}.\nTake a deep breath and analyze my request, think about what genres, artists, bands which can be appropriate. Don't give a direct list of songs. Instead, write your thoughts and  analysis of my request (2-3 sentences). Tracks i want should be not very trivial and not popular"
 
 songs_in_json_prompt = "According to my request and the information you provided, create a list of 20 songs in JSON format. Give the result in this format:/n/n[{\"artist\": \"...\", \"song\": \"...\"}, ...].\n\nDon't write anything other than JSON. Start your message with \"[\""
 
 describe_playlist_prompt = "In two sentences, describe the playlist you've picked up."
 
-create_title_prompt = "Write a genre and style of playlist in 3 words. Write without quotes."
+create_title_prompt = "Summarize music i requested in 1-3 words. Write without quotes."
 
 
 @dataclass
@@ -26,7 +26,7 @@ class Song:
 class Playlist: # TODO: Move
     def __init__(self, title: str, description: str, songs: List[Song]):
 
-        curr_date_str = datetime.now().strftime("%Y.%m.%d %H-%M-%S")
+        curr_date_str = datetime.now().strftime("%Y.%m.%d") #  %H-%M-%S
         self.title = f"{curr_date_str}: {title}"
         self.description = description
         self.songs = songs

@@ -42,6 +42,7 @@ async def echo_message(message: types.Message):
     response_text = playlist_created_message_template.format(title=playlist.title, description=playlist.description)
 
     await message.answer(request_comment + "\n\n" + response_text)
+    print('Done')
 
 
 if __name__ == '__main__':

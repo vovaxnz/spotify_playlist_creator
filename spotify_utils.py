@@ -37,7 +37,8 @@ class SpotifyClient:
         track_ids = [] 
         for song in playlist.songs:
             # Search tracks
-            result = self.sp.search(f"{song.artist} {song.title}", type='track', limit=1)
+            # result = self.sp.search(f"{song.artist} {song.title}", type='track', limit=1) # Non-exact search
+            result = self.sp.search(f"artist:{song.artist} track:{song.title}", type='track', limit=1) # Non-exact search
             
             # Assuming you want the first search result
             if result['tracks']['items']:
